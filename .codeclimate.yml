@@ -1,0 +1,8 @@
+engines:
+  yamllint:
+    enabled: true
+    extends: default
+    ignore: |
+      /this/specific/file.yaml
+      all/this/directory/
+      *.template.yaml
