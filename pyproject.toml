@@ -45,7 +45,21 @@ description = "A slim YAMLLint container that can run in standalone-mode or as a
 documentation = "https://megabyte.space/docs/docker/ci"
 homepage = "https://megabyte.space"
 include = ["docs/CHANGELOG.md", "LICENSE"]
-keywords = [""]
+keywords = [
+  "ci",
+  "codeclimate",
+  "container",
+  "docker",
+  "dockerfile",
+  "gitlab",
+  "gitlab-ci",
+  "mblabs",
+  "megabytelabs",
+  "pipeline",
+  "professormanhattan",
+  "virtualization",
+  "washingtondc"
+]
 license = "MIT"
 name = "codeclimate-yamllint"
 readme = "README.md"

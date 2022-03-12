@@ -3,13 +3,10 @@ version: '3'
 
 tasks:
   fat:
-    run: when_changed
     deps:
       - :install:software:docker
       - :install:software:jq
     desc: Build a normal Docker container from the Dockerfile
-    hide:
-      sh: '[ ! -f Dockerfile ]'
     summary: |
       # Build Docker Container from Dockerfile
 
@@ -40,6 +37,9 @@ tasks:
           {{end}}
       VERSION:
         sh: jq -r '.version' package.json
+    run: when_changed
+    hide:
+      sh: '[ ! -f Dockerfile ]'
     log:
       error: Error building `{{.DOCKER_IMAGE}}:{{.VERSION}}`
       start: Building Docker container `{{.DOCKER_IMAGE}}:{{.VERSION}}` (also tagged as latest)

@@ -1,11 +1,11 @@
 {
-  "name": "yamllint",
   "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
-  "maintainer": {
-    "name": "Megabyte Labs",
-    "email": "help@megabyte.space"
-  },
   "languages": ["YAML"],
-  "version": "0.0.1",
-  "spec_version": "0.0.1"
+  "maintainer": {
+    "email": "help@megabyte.space",
+    "name": "Megabyte Labs"
+  },
+  "name": "yamllint",
+  "spec_version": "0.0.1",
+  "version": "0.0.1"
 }
