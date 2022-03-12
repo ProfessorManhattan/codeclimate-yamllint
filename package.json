@@ -1,0 +1,20 @@
+{
+    "blueprint": {
+        "codeClimateLanguages": ["YAML"],
+        "name": "YAMLLint",
+        "title": "CodeClimate and Standalone Engines for YAMLLint",
+        "overview": "This repository is home to a Dockerfile project that generates a GitLab CI-ready [CodeClimate](https://codeclimate.com/) engine for YAML Lint and a compact slim container suitable for standalone linting with YAMLLint. [YAMLLint](https://github.com/adrienverge/yamllint) is arguably the standard for linting YAML files. It is written in Python and checks for syntax validity, key repitition, and cosmetic problems such as line lengths, trailing spaces, and indentation.\n\nThis project was created to integrate YAMLLint results into the GitLab web GUI. GitLab accepts results in a format that is very similar to the CodeClimate format. This repository also serves a second purpose and that is to be able to generate a tiny Docker container that is capable of running YAMLLint very quickly in any CI setting.",
+        "repository": {
+            "github": "https://github.com/ProfessorManhattan/codeclimate-yamllint",
+            "gitlab": "https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint"
+        },
+        "slug": "yamllint",
+        "group": "docker",
+        "subgroup": "codeclimate",
+        "dockerSlimCommand": {
+            "codeclimate-yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'",
+            "yamllint": ""
+        },
+        "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine"
+    }
+}

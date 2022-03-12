@@ -1,0 +1,18 @@
+schemaVersion: "2.0.0"
+
+commandTests:
+  - name: "Ensure YAMLLint can show version information"
+    command: "yamllint"
+    args: ["--version"]
+    expectedOutput: [".*yamllint 1.*"]
+
+metadataTest:
+  labels:
+    - key: 'maintainer'
+      value: 'Megabyte Labs <help@megabyte.space>'
+    - key: 'space.megabyte.type'
+      value: 'code-climate'
+  volumes: ["/code"]
+  entrypoint: []
+  workdir: "/code"
+  user: "app"        

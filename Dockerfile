@@ -1,34 +1,34 @@
-FROM alpine:3
+FROM alpine:3 AS codeclimate-yamllint
 
-ENV container docker
+WORKDIR /work
+
+COPY local/codeclimate-yamllint /usr/local/bin/codeclimate-yamllint
+COPY local/engine.json ./engine.json
+COPY test ./
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-RUN apk --no-cache add --virtual build-dependencies \
+RUN adduser --uid 9000 --gecos "" --disabled-password app \
+  && apk --no-cache add --virtual build-deps \
+      jq~=1 \
       py3-pip~=20 \
   && apk --no-cache add \
-      python3~=3 gawk~=5 \
+      gawk~=5 \
+      python3~=3 \
   && pip3 install --no-cache-dir \
       "yamllint==1.*" \
-  && apk del build-dependencies \
+  && VERSION="$(yamllint --version | sed 's/.*\s//')" \
+  && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
+  && apk del build-deps \
   && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
-  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf
-
-# Now copying the codeclimate deps
-WORKDIR /usr/src/app/
-
-COPY engine.json /
-
-RUN adduser --uid 9000 --gecos "" --disabled-password app
-
-COPY . ./
-RUN chown -R app:app ./
+  && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf \
+  && chown -R app:app ./
 
 USER app
 
-VOLUME /code
+VOLUME ["/code"]
 WORKDIR /code
 
-CMD ["/usr/src/app/bin/codeclimate-yamllint"]
+CMD ["codeclimate-yamllint", "/code"]
 
 ARG BUILD_DATE
 ARG REVISION
@@ -46,3 +46,20 @@ LABEL org.opencontainers.image.url="https://megabyte.space"
 LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
 LABEL space.megabyte.type="code-climate"
+
+FROM codeclimate-yamllint AS yamllint
+
+WORKDIR /work
+
+USER root
+
+RUN rm /engine.json \
+  && rm -rf * \
+  && rm /usr/local/bin/codeclimate-yamllint
+
+USER app
+
+ENTRYPOINT ["yamllint"]
+CMD ["--version"]
+
+LABEL space.megabyte.type="code-climate-standalone"

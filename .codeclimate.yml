@@ -1,8 +1,30 @@
-engines:
+---
+version: '2'
+
+plugins:
   yamllint:
     enabled: true
-    extends: default
-    ignore: |
-      /this/specific/file.yaml
-      all/this/directory/
-      *.template.yaml
+
+exclude_patterns:
+  - .autodoc/
+  - .cache/
+  - .common/
+  - .git/
+  - .husky/
+  - .modules/
+  - .npm/
+  - .pnpm-store/
+  - .shared/
+  - .task/
+  - .venv/
+  - .vscode/
+  - .tox
+  - .travis.yml
+  - *.hbs.yml
+  - build/
+  - dist/
+  - node_modules/
+  - pnpm-lock.yaml
+  - roles/
+  - testdata/
+  - venv/
