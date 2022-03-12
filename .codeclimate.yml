@@ -20,7 +20,7 @@ exclude_patterns:
   - .vscode/
   - .tox
   - .travis.yml
-  - *.hbs.yml
+  - '*.hbs.yml'
   - build/
   - dist/
   - node_modules/
