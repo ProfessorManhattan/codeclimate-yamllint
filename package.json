@@ -1,20 +1,239 @@
 {
-    "blueprint": {
-        "codeClimateLanguages": ["YAML"],
-        "name": "YAMLLint",
-        "title": "CodeClimate and Standalone Engines for YAMLLint",
-        "overview": "This repository is home to a Dockerfile project that generates a GitLab CI-ready [CodeClimate](https://codeclimate.com/) engine for YAML Lint and a compact slim container suitable for standalone linting with YAMLLint. [YAMLLint](https://github.com/adrienverge/yamllint) is arguably the standard for linting YAML files. It is written in Python and checks for syntax validity, key repitition, and cosmetic problems such as line lengths, trailing spaces, and indentation.\n\nThis project was created to integrate YAMLLint results into the GitLab web GUI. GitLab accepts results in a format that is very similar to the CodeClimate format. This repository also serves a second purpose and that is to be able to generate a tiny Docker container that is capable of running YAMLLint very quickly in any CI setting.",
-        "repository": {
-            "github": "https://github.com/ProfessorManhattan/codeclimate-yamllint",
-            "gitlab": "https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint"
-        },
-        "slug": "yamllint",
-        "group": "docker",
-        "subgroup": "codeclimate",
-        "dockerSlimCommand": {
-            "codeclimate-yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'",
-            "yamllint": ""
-        },
-        "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine"
+  "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
+  "blueprint": {
+    "codeClimateLanguages": [
+      "YAML"
+    ],
+    "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
+    "dockerSlimCommand": {
+      "codeclimate-yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'",
+      "yamllint": ""
+    },
+    "group": "docker",
+    "name": "YAMLLint",
+    "overview": "This repository is home to a Dockerfile project that generates a GitLab CI-ready [CodeClimate](https://codeclimate.com/) engine for YAML Lint and a compact slim container suitable for standalone linting with YAMLLint. [YAMLLint](https://github.com/adrienverge/yamllint) is arguably the standard for linting YAML files. It is written in Python and checks for syntax validity, key repitition, and cosmetic problems such as line lengths, trailing spaces, and indentation.\n\nThis project was created to integrate YAMLLint results into the GitLab web GUI. GitLab accepts results in a format that is very similar to the CodeClimate format. This repository also serves a second purpose and that is to be able to generate a tiny Docker container that is capable of running YAMLLint very quickly in any CI setting.",
+    "repository": {
+      "github": "https://github.com/ProfessorManhattan/codeclimate-yamllint",
+      "gitlab": "https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint"
+    },
+    "slug": "yamllint",
+    "subgroup": "codeclimate",
+    "title": "CodeClimate and Standalone Engines for YAMLLint"
+  },
+  "bugs": {
+    "email": "help@megabyte.space",
+    "url": "https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint/-/issues"
+  },
+  "changelog": {
+    "displayTypes": [
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "revert"
+    ],
+    "showAuthor": true
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "helpUrl": "https://megabyte.space/docs/contributing/commits"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/git-cz-emoji"
     }
+  },
+  "dependencies": {},
+  "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
+  "devDependencies": {
+    "@commitlint/config-conventional": "latest",
+    "eslint-config-strict-mode": "latest",
+    "git-cz-emoji": "latest",
+    "handlebars-helpers": "latest",
+    "prettier-config-sexy-mode": "latest",
+    "semantic-release-config": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=14.18.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-strict-mode"
+  },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/megabytelabs"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/ProfessorManhattan"
+    }
+  ],
+  "homepage": "https://megabyte.space",
+  "keywords": [
+    "ci",
+    "codeclimate",
+    "container",
+    "docker",
+    "dockerfile",
+    "gitlab",
+    "gitlab-ci",
+    "mblabs",
+    "megabytelabs",
+    "pipeline",
+    "professormanhattan",
+    "virtualization",
+    "washingtondc"
+  ],
+  "license": "MIT",
+  "lint-staged": {
+    "(Brewfile|composer.lock|Gemfile|Gopkg.lock|Pipfile.lock)": [
+      "task fix:prettier --"
+    ],
+    "**/!(logo).(jpg|png)": [
+      "task image:compress --"
+    ],
+    "**/*": [
+      "task lint:any --"
+    ],
+    "**/*!(template).(json|webapp|webmanifest)": [
+      "task fix:json --"
+    ],
+    "**/*.(bash|cfg|cgi|command|css|env|env.*|handlebars|hbs|html|less|fcgi|java|md|mdx|mjml|php|phtml|properties|reg|scss|tmpl|tmux|tool|tpl|zsh)": [
+      "task fix:prettier --"
+    ],
+    "**/*.(cjs|js|jsx|mjs|ts|tsx)": [
+      "task fix:js --",
+      "task lint:js --"
+    ],
+    "**/*.(yml|yaml)": [
+      "task fix:yaml --",
+      "task lint:yaml --"
+    ],
+    "**/*.go": [
+      "task fix:go --",
+      "task lint:go --"
+    ],
+    "**/*.md": [
+      "task fix:markdown --",
+      "task lint:spelling:markdown --"
+    ],
+    "**/*.php": [
+      "task fix:php --",
+      "task lint:php --"
+    ],
+    "**/*.py": [
+      "task fix:python --",
+      "task lint:python --"
+    ],
+    "**/*.sh": [
+      "task fix:prettier --",
+      "task fix:shell --",
+      "task lint:shell --"
+    ],
+    "**/*.toml": [
+      "task fix:toml --",
+      "task fix:prettier --",
+      "task lint:toml --"
+    ],
+    "**/*.xml": [
+      "task fix:xml --",
+      "task lint:xml --"
+    ],
+    "Dockerfile": [
+      "task fix:prettier --",
+      "task lint:docker --"
+    ],
+    "Vagrantfile": [
+      "task fix:prettier --",
+      "task lint:vagrant"
+    ],
+    "logo.png": [
+      "task image:resize -- 200 200",
+      "task image:compress --"
+    ]
+  },
+  "name": "@megabytelabs/codeclimate-yamllint",
+  "ntl": {
+    "descriptions": {
+      "build": "Builds the project using the build command specified under scripts in package.json",
+      "commit": "If unsure, use this task to commit your code so that it adheres to our commit rules",
+      "fix": "Run auto-fixing with all available auto-fixers",
+      "help": "Display the Bodega Taskfile.yml interactive help menu",
+      "lint": "Lint the project with all available linters",
+      "preload": "Preload the operating system with commonly used libraries and tools",
+      "prepare": "A hook triggered by running npm install that runs logic such as installing pre-commit hooks",
+      "release": "Publish the software to all supported channels using semantic-release",
+      "repair": "Fixes basic issues in projects that are having trouble running basic commands like 'task start'",
+      "start": "Entrypoint for new developers that installs requirements and then runs 'task start'",
+      "test": "Runs the appropriate test logic by running the test command defined under scripts in package.json",
+      "unpack": "Populates production node_modules from compressed copies saved in the .modules/ folder",
+      "update": "Update and refresh the repository with upstream changes and templated parts"
+    }
+  },
+  "optionalDependencies": {},
+  "pnpm": {
+    "allowedVersions": {
+      "@typescript-eslint/eslint-plugin": "5",
+      "typescript": "4"
+    },
+    "neverBuiltDependencies": [
+      "core-js",
+      "core-js-pure",
+      "highlight.js"
+    ],
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "eslint",
+        "prettier"
+      ]
+    }
+  },
+  "prettier": "prettier-config-sexy-mode",
+  "private": false,
+  "publishConfig": {
+    "@megabyte:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "access": "public"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "master",
+      "next",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ],
+    "extends": "semantic-release-config"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProfessorManhattan/codeclimate-yamllint.git"
+  },
+  "scripts": {
+    "build": "task docker:build",
+    "commit": "bash start.sh && task commit",
+    "fix": "bash start.sh && task fix",
+    "help": "bash start.sh && task --menu",
+    "lint": "bash start.sh && task list",
+    "preload": "bash start.sh && task preload",
+    "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
+    "prepublishOnly": "test -z SKIP_NPM_PREPUBLISHONLY && bash start.sh && task npm:bundle:create || true",
+    "release": "bash start.sh && task publish:semantic-release",
+    "repair": "bash <(curl -sS https://install.doctor/repair)",
+    "start": "test -z SKIP_NPM_START && bash start.sh || true",
+    "test": "task docker:test",
+    "unpack": "bash start.sh && task npm:bundle:unpack",
+    "update": "bash start.sh && task update"
+  },
+  "type": "commonjs",
+  "version": "0.0.1"
 }
