@@ -66,7 +66,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@megabyte:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "@megabyte:registry": "https://gitlab.com/api/v4/projects/32219932/packages/npm/",
     "access": "public"
   },
   "blueprint": {
@@ -78,6 +78,9 @@
       "codeclimate-yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'",
       "yamllint": ""
     },
+    "github_id": "R_kgDOG_Sl6w",
+    "gitlab_group_id": "14556970",
+    "gitlab_project_id": "32219932",
     "group": "docker",
     "name": "YAMLLint",
     "overview": "This repository is home to a Dockerfile project that generates a GitLab CI-ready [CodeClimate](https://codeclimate.com/) engine for YAML Lint and a compact slim container suitable for standalone linting with YAMLLint. [YAMLLint](https://github.com/adrienverge/yamllint) is arguably the standard for linting YAML files. It is written in Python and checks for syntax validity, key repitition, and cosmetic problems such as line lengths, trailing spaces, and indentation.\n\nThis project was created to integrate YAMLLint results into the GitLab web GUI. GitLab accepts results in a format that is very similar to the CodeClimate format. This repository also serves a second purpose and that is to be able to generate a tiny Docker container that is capable of running YAMLLint very quickly in any CI setting.",
@@ -87,10 +90,7 @@
     },
     "slug": "yamllint",
     "subgroup": "codeclimate",
-    "title": "CodeClimate and Standalone Engines for YAMLLint",
-    "github_id": "R_kgDOG_Sl6w",
-    "gitlab_project_id": "32219932",
-    "gitlab_group_id": "14556970"
+    "title": "CodeClimate and Standalone Engines for YAMLLint"
   },
   "changelog": {
     "displayTypes": [
@@ -110,7 +110,9 @@
   },
   "eslintConfig": {
     "extends": "eslint-config-strict-mode",
-    "ignorePatterns": ["test/"]
+    "ignorePatterns": [
+      "test/"
+    ]
   },
   "funding": [
     {
