@@ -241,7 +241,7 @@ export DOCKERHUB_PASSWORD=Your_DockerHub_Password_Here
 docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
 docker build -t "$DOCKERHUB_USERNAME/yamllint:latest" .
 docker-slim build --tag $DOCKERHUB_USERNAME/yamllint:slim * **codeclimate-yamllint**: --http-probe=false --exec 'yamllint . && yamllint --version' --mount "$(echo '$PWD')/test/example:/work" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'
-* **yamllint**:  $DOCKERHUB_USERNAME/yamllint:latest
+* **yamllint**: --http-probe=false --exec 'yamllint . && yamllint --version' --mount "$(echo '$PWD')/test/example:/work" --workdir '/work' --preserve-path-file './local/paths.yamllint.txt' $DOCKERHUB_USERNAME/yamllint:latest
 docker push "$DOCKERHUB_USERNAME/yamllint:slim"
 ```
 

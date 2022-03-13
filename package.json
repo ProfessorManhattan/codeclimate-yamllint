@@ -76,7 +76,7 @@
     "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
     "dockerSlimCommand": {
       "codeclimate-yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'",
-      "yamllint": ""
+      "yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.yamllint.txt'"
     },
     "github_id": "R_kgDOG_Sl6w",
     "gitlab_group_id": "14556970",
@@ -90,7 +90,16 @@
     },
     "slug": "yamllint",
     "subgroup": "codeclimate",
-    "title": "CodeClimate and Standalone Engines for YAMLLint"
+    "title": "CodeClimate and Standalone Engines for YAMLLint",
+    "dockerSlimSize": {
+      "codeclimate-yamllint": "3.8M",
+      "yamllint": "3.3M"
+    },
+    "dockerLatestSize": {
+      "codeclimate-yamllint": "15M",
+      "yamllint": "15M"
+    },
+    "versionCommand": "docker run -it megabytelabs/yamllint:latest | sed 's/.*\\s//'"
   },
   "changelog": {
     "displayTypes": [
