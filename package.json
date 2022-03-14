@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@megabytelabs/codeclimate-yamllint",
-  "version": "0.0.1",
+  "version": "1.26.3",
   "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
@@ -26,7 +26,7 @@
     "prepublishOnly": "test -z $SKIP_PREPUB && bash start.sh && task npm:bundle:create || true",
     "release": "bash start.sh && task publish:semantic-release",
     "repair": "bash <(curl -sS https://install.doctor/repair)",
-    "start": "test -z SKIP_NPM_START && bash start.sh || true",
+    "start": "test -z $SKIP_NPM_START && bash start.sh || true",
     "test": "bash start.sh && task docker:test",
     "unpack": "bash start.sh && task npm:bundle:unpack",
     "update": "bash start.sh && task update"
@@ -99,7 +99,7 @@
     "slug": "yamllint",
     "subgroup": "codeclimate",
     "title": "CodeClimate and Standalone Engines for YAMLLint",
-    "versionCommand": "docker run -it megabytelabs/yamllint:latest | sed 's/.*\\s//'"
+    "versionCommand": "docker run -it megabytelabs/yamllint:latest"
   },
   "changelog": {
     "displayTypes": [
