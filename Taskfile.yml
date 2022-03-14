@@ -1,5 +1,6 @@
 ---
 version: '3'
+
 includes:
   ansible: ./.config/taskfiles/ansible/Taskfile.yml
   ansible:ansibler: ./.config/taskfiles/ansible/Taskfile-ansibler.yml
@@ -30,6 +31,7 @@ includes:
   go:test: ./.config/taskfiles/go/Taskfile-test.yml
   image: ./.config/taskfiles/image/Taskfile.yml
   install: ./.config/taskfiles/install/Taskfile.yml
+  install:ansible: ./.config/taskfiles/install/Taskfile-ansible.yml
   install:apt: ./.config/taskfiles/install/Taskfile-apt.yml
   install:github: ./.config/taskfiles/install/Taskfile-github.yml
   install:go: ./.config/taskfiles/install/Taskfile-go.yml
@@ -65,6 +67,8 @@ includes:
   release: ./.config/taskfiles/release/Taskfile.yml
   security: ./.config/taskfiles/security/Taskfile.yml
   symlink: ./.config/taskfiles/symlink/Taskfile.yml
+  ui: ./.config/taskfiles/ui/Taskfile.yml
+  update: ./.config/taskfiles/update/Taskfile.yml
   upstream: ./.config/taskfiles/upstream/Taskfile.yml
   upstream:common: ./.config/taskfiles/upstream/Taskfile-common.yml
   upstream:commondocs: ./.config/taskfiles/upstream/Taskfile-commondocs.yml
@@ -77,38 +81,83 @@ includes:
   web:ionic: ./.config/taskfiles/web/Taskfile-ionic.yml
   web:nx: ./.config/taskfiles/web/Taskfile-nx.yml
   web:profile: ./.config/taskfiles/web/Taskfile-profile.yml
-  install:ansible: ./.config/taskfiles/install/Taskfile-ansible.yml
-  ui: ./.config/taskfiles/ui/Taskfile.yml
-  update: ./.config/taskfiles/update/Taskfile.yml
+
 output: interleaved
+
 vars:
   DOCKERHUB_PROFILE: megabytelabs
   DOCKERHUB_USER: professormanhattan
   ESLINT_FIX_RECURSIVE: 'true'
   ESLINT_FORMATTER: stylish
   ESLINT_FORMATTER_OPTIONS: git-log gitlab pretty summary
+  GALAXY_AUTHOR: ProfessorManhattan
+  GALAXY_COMPANY: Megabyte Labs
+  GALAXY_NAMESPACE:
+    sh: |
+      if [ -f meta/main.yml ]; then
+        grep namespace < meta/main.yml | sed 's/.*namespace: \\(.*\\)$/\\1/g'
+      else
+        echo 'professormanhattan'
+      fi
+  GALAXY_ROLE_NAME:
+    sh: "if [ -f meta/main.yml ]; then grep role_name < meta/main.yml | sed 's/.*role_name: \\(.*\\)$/\\1/g'; fi"
   GITHUB_ORG: ProfessorManhattan
   GITHUB_USER: ProfessorManhattan
   GROUP_EXEC_ASYNC: 'false'
-  IGNORE_FOLDERS: -path './.autodoc/*' -o -path './.cache/*' -o -path './.common*' -o -path './.config/*' -o -path './.git/*' -o -path './.github/*' -o -path './.gitlab/*' -o -path './.husky/*' -o -path './.modules/*' -o -path './.npm/*' -o -path './.pnpm-store/*' -o -path './.shared/*' -o -path './.task/*' -o -path './.venv/*' -o -path './.vscode/*' -o -path './build/*' -o -path './dist/*' -o -path './node_modules/*' -o -path './roles/*' -o -name pnpm-lock.yaml -o -name package-lock.json -o -name poetry.lock -o -name '.variables.json'
+  IGNORE_FOLDERS: -path './.autodoc/*' -o -path './.cache/*' -o -path './.common*' -o -path './.config/*' -o -path './.git/*'
+    -o -path './.github/*' -o -path './.gitlab/*' -o -path './.husky/*' -o -path './.modules/*' -o -path './.npm/*'
+    -o -path './.pnpm-store/*' -o -path './.shared/*' -o -path './.task/*' -o -path './.venv/*' -o -path './.vscode/*'
+    -o -path './build/*' -o -path './dist/*' -o -path './node_modules/*' -o -path './roles/*' -o -name pnpm-lock.yaml
+    -o -name package-lock.json -o -name poetry.lock -o -name '.variables.json'
   INIT_SCRIPT: https://gitlab.com/megabyte-labs/gitlab-ci/-/raw/master/scripts/update-init.sh
   LOG_FIX:
-    sh: chmod +x .config/log && echo "heyhey"
+    sh: chmod +x .config/log
   MODEL_TASKFILE: https://gitlab.com/megabyte-labs/common/shared/-/raw/master/Taskfile.yml
   NPM_KEEP_UPDATED: glob
   NPM_PROGRAM: npm
   NPM_PROGRAM_LOCAL: pnpm
   NPX_HANDLE: 'pnpx '
   NPX_PACKAGE: pnpx
-  PROJECT_TYPE: project
+  # yamllint disable rule:line-length
+  PROJECT_TYPE:
+    sh: |
+      # yamllint disable-line rule:line-length
+      if type jq &> /dev/null && [ -f package.json ]; then VER="$(jq -r '.blueprint.group' package.json)"; if [ "$VER" == 'null' ]; then echo TYPE="docker"; else TYPE="$VER"; fi; else TYPE="docker"; fi
+      # yamllint disable-line rule:line-length
+      if type jq &> /dev/null && [ -f package.json ]; then VER="$(jq -r '.blueprint.subgroup' package.json)"; if [ "$VER" == 'null' ]; then SUBTYPE="codeclimate"; else SUBTYPE="$VER"; fi; else SUBTYPE="codeclimate"; fi
+      if [ "$TYPE" == 'common' ] && [ "$SUBTYPE" == 'shared' ]; then
+        echo 'shared'
+      elif [ "$TYPE" == 'common' ]; then
+        echo 'common'
+      elif [ "$TYPE" == 'documentation' ] && [ "$SUBTYPE" == 'shared' ]; then
+        echo 'commondocs'
+      elif [ "$TYPE" == 'documentation' ]; then
+        echo 'docs'
+      else
+        echo 'project'
+      fi
+  # yamllint enable rule:line-length
   PYTHON_HANDLE: 'poetry run '
   PYTHON_VIRTUALENV: true
   REPOSITORY_SUBTYPE:
-    sh: if type jq &> /dev/null && [ -f package.json ]; then VER="$(jq -r .blueprint.subgroup package.json)"; if [ "$VER" == null ]; then echo "documentation"; else echo "$VER"; fi; else echo "documentation"; fi
+    sh: |
+      if type jq &> /dev/null && [ -f package.json ]; then
+        VER="$(jq -r '.blueprint.subgroup' package.json)"
+        if [ "$VER" == 'null' ]; then echo "codeclimate"; else echo "$VER"; fi
+      else
+        echo "codeclimate"
+      fi
   REPOSITORY_TYPE:
-    sh: if type jq &> /dev/null && [ -f package.json ]; then VER="$(jq -r .blueprint.group package.json)"; if [ "$VER" == null ]; then echo "documentation"; else echo "$VER"; fi; else echo "documentation"; fi
+    sh: |
+      if type jq &> /dev/null && [ -f package.json ]; then
+        VER="$(jq -r '.blueprint.group' package.json)"
+        if [ "$VER" == 'null' ]; then echo "docker"; else echo "$VER"; fi
+      else
+        echo "docker"
+      fi
   SEMANTIC_CONFIG: semantic-release-config
   TIMEZONE: America/New_York
+
 env:
   OSTYPE:
     sh: |
@@ -117,8 +166,12 @@ env:
       if [ -n "$LIBC" ]; then LINUX_FLAVOR='linux-musl'; fi{{end}}
       echo "{{if (eq OS "linux")}}$LINUX_FLAVOR{{else}}darwin{{end}}"
   RECORD_INSTALL:
-    sh: test -n "$CI" && echo "true" || true
-  SENTRY_DSN: ''
+    sh: if [ -n "$CI" ]; then echo 'true'; fi
+  SENTRY_DSN:
+    sh: |
+      DSN="$(jq -r '.blueprint.sentryDSN' package.json)"
+      if [ "$DSN" != 'null' ]; then echo "$DSN"; fi
+
 profile: |
   PATH="$PATH:$HOME/.local/bin:$HOME/.poetry/bin"
   if [[ "$OSTYPE" == 'linux-gnu'* ]] || [[ "$OSTYPE" == 'linux-musl'* ]]; then
@@ -138,6 +191,7 @@ profile: |
   if [ -f .venv/bin/activate ]; then
     . .venv/bin/activate
   fi
+
 tasks:
   build:
     deps:
@@ -162,6 +216,7 @@ tasks:
         else
           [[ $- == *i* ]] && task prepare || (.config/log error '{{.NONINTERACTIVE_MISSING_BUILD_CMD}}' && exit 1)
         fi
+
   clean:
     desc: Removes optional folders that are cached during various tasks
     summary: |
@@ -172,11 +227,13 @@ tasks:
       which will re-generate the project from scratch. Ideally, this task and the reset task
       should never be necessary. The `start` task should be used instead.
     vars:
-      CLEAN_TARGETS: .autodoc .cache .task .venv node_modules tsconfig.tsbuildinfo venv .variables.json
+      CLEAN_TARGETS: .autodoc .cache .task .venv node_modules tsconfig.tsbuildinfo venv
+        .variables.json
     cmds:
       - task: common:clean
         vars:
           CLEAN_TARGETS: '{{.CLEAN_TARGETS}}'
+
   commit:
     desc: Lint staged files, report spelling errors, and open a _required_ commit dialoge
     summary: |
@@ -193,6 +250,7 @@ tasks:
       to your regular `git commit -m` command to bypass the pre-commit hook.
     cmds:
       - task: common:commit
+
   commit:all:
     deps:
       - install:software:git
@@ -228,12 +286,20 @@ tasks:
         git add --all
         git commit
         {{end}}
+
   commit:quick:
     cmds:
       - git add --all
-      - "HUSKY=0 git commit -m '\U0001F527 chore(tweak)": quick minor update' --no-verify
+      - HUSKY=0 git commit -m '🔧 chore(tweak): quick minor update' --no-verify
       - git push origin master
+
+  devcontainer:
+    deps:
+      - install:npm:devcontainer
+      - install:software:docker
+
   donothing: 'true'
+
   fix:
     desc: Run code auto-fixers / auto-formatters
     summary: |
@@ -244,6 +310,7 @@ tasks:
       an error so the auto-fixes still have to be validated.
     cmds:
       - task: fix:all
+
   get:links:
     deps:
       - install:software:jq
@@ -256,6 +323,7 @@ tasks:
     cmds:
       - .config/log info 'GitHub -----> `{{.GITHUB_URL}}`'
       - .config/log info 'GitLab -----> `{{.GITLAB_URL}}`'
+
   group:exec:
     desc: Execute group commands on any GitLab group (including repositories in sub-groups)
     summary: |
@@ -276,16 +344,16 @@ tasks:
       Be sure to wrap the command in quotes or you might observe some odd behavior.
     cmds:
       - task: git:gitlab:group:exec
+
   init:
     deps:
       - install:software:jq
       - install:software:yq
     desc: Runs the initialization script
     summary: |
-      # Initialize the Project and Run the Full Update Sequence
+      # Initialize the Project
 
-      This command will mostly not be needed for pre-existing projects. This task begins
-      by calling a script that:
+      This command will mostly not be needed for pre-existing projects. This task:
 
       1. Migrates legacy projects
       2. Fixes common errors
@@ -307,17 +375,10 @@ tasks:
       success: Successfully bootstrapped project by running initialization script
     cmds:
       - git init
-      - |
-        TMP="$(mktemp)" && curl -sSL {{.MODEL_TASKFILE}} > "$TMP"
-        .config/log info 'Ensuring new additions to the model `Taskfile.yml` are present in the project `Taskfile.yml`'
-        yq eval-all -i 'select(fileIndex == 0) * select(fileIndex == 1)' "$TMP" Taskfile.yml
-      - |
-        if [ -n "$UPDATE_INIT_SCRIPT" ]; then
-          bash <(curl -sSL "$UPDATE_INIT_SCRIPT")
-        else
-          bash <(curl -sSL {{.INIT_SCRIPT}})
-        fi
-      - git push origin master
+      - task: repair
+      - task: ci:commit
+      - task: ci:synchronize
+
   lint:
     desc: Lints the project using all linters
     summary: |
@@ -331,6 +392,7 @@ tasks:
       `task lint`
     cmds:
       - task: lint:all
+
   livereload:
     deps:
       - install:npm:nodemon
@@ -370,10 +432,12 @@ tasks:
           .config/log error '`Taskfile-project.yml` must exist and have a `livereload` task to use with `nodemon`' && exit 1
         fi
       - nodemon --config {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}.config/nodemon.json{{end}}
+
   new:project:
     desc: Create a new project
     cmds:
       - task: prepare
+
   preload:
     desc: Set up your workstation in advance by installing commonly used programs
     summary: |
@@ -406,7 +470,9 @@ tasks:
       start: Preloading system with common dependencies
       success: Successfully preloaded system with common dependencies (REBOOT RECOMMENDED)
     cmds:
+      - task: install:software:common
       - task: install:brewfile
+      - task: install:extras
       - task: install:go:bundle
       - task: install:rust:bundle
       - task: install:github:bundle
@@ -414,6 +480,7 @@ tasks:
       - task: install:pipx:bundle
       - task: install:python:requirements
       - task: install:modules:local
+
   prepare:
     desc: Prepares the project for the normal start command
     summary: |
@@ -430,6 +497,7 @@ tasks:
     cmds:
       - task: boilerplate:check:package
       - task: boilerplate:clean
+
   publish:
     desc: Publish a semantic release via `semantic-release`
     summary: |
@@ -477,6 +545,7 @@ tasks:
       success: Successfully ran `semantic-release` via `task publish`
     cmds:
       - task: publish:semantic-release
+
   publish:force:
     desc: Force a `semantic-release` even if there are no new eligible commits
     summary: |
@@ -502,8 +571,40 @@ tasks:
       start: Publishing `semantic-release` update via `task publish:force`
       success: Successfully published update via `task publish:force`
     cmds:
-      - "HUSKY=0 git commit -a --allow-empty -m '\U0001F528 build(version bump): semantic-release {{.UPDATE_LEVEL}}' -n\n"
+      - |
+        HUSKY=0 git commit -a --allow-empty -m '🔨 build(version bump): semantic-release {{.UPDATE_LEVEL}}' -n
       - task: publish
+
+  pull:upstream:
+    desc: Pull from upstream repositories
+    summary: |
+      # Pull Changes from Upstream Repositories
+
+      This task will do a `git pull` on each repository defined in `.blueprint.upstreamRemotes`.
+      The variable should be an array of objects where each object has the `remote`, `url`, and `branch` keys.
+
+      **Sample value of `.blueprint.upstreamRemotes`:**
+      `[{ "remote": "ionic", "url": "git@github.com:ionic-team/ionic-docs.git", "branch": "main" }]`
+    log:
+      error: Encountered error while running `git pull` on each of the `upstreamRemotes`
+      start: Running `git pull` on each of the `upstreamRemotes`
+      success: Successfully pulled from `upstreamRemotes`
+    cmds:
+      - task: common:update:upstream:remotes:pull
+
+  repair:
+    cmds:
+      - |
+        TMP="$(mktemp)" && curl -sSL {{.MODEL_TASKFILE}} > "$TMP"
+        .config/log info 'Ensuring new additions to the model `Taskfile.yml` are present in the project `Taskfile.yml`'
+        yq eval-all -i 'select(fileIndex == 0) * select(fileIndex == 1)' "$TMP" Taskfile.yml
+      - |
+        if [ -n "$UPDATE_INIT_SCRIPT" ]; then
+          bash <(curl -sSL "$UPDATE_INIT_SCRIPT")
+        else
+          bash <(curl -sSL {{.INIT_SCRIPT}})
+        fi
+
   reset:
     desc: Resets the project by removing all caches and then re-generating templated files
     summary: |
@@ -515,6 +616,7 @@ tasks:
       updates, it re-generates any templated files.
     cmds:
       - task: common:reset
+
   reset:force:
     desc: 'Aggressively reset the project (**WARNING** This will wipe uncommitted work)'
     summary: |
@@ -533,6 +635,7 @@ tasks:
       answer:
         cmds:
           - task: common:reset:force
+
   scripts:
     interactive: true
     deps:
@@ -550,6 +653,7 @@ tasks:
       start: Running `NTL_RUNNER={{.NPM_PROGRAM}} {{.NPX_HANDLE}}ntl`
     cmds:
       - NTL_RUNNER={{.NPM_PROGRAM}} {{.NPX_HANDLE}}ntl
+
   services:
     desc: Update elements of the repository that require API access
     summary: |
@@ -562,6 +666,7 @@ tasks:
       - task: common:update:services
     status:
       - '[ -n "$GITLAB_CI" ] && [ "$REPOSITORY_UPDATE" != "true" ]'
+
   shell:
     desc: Start a terminal session using Docker with any Linux operating system
     compile: |
@@ -595,6 +700,7 @@ tasks:
       * ubuntu-21.04
     cmds:
       - task: common:shell
+
   start:
     desc: Set up the project and refresh it with the latest changes
     summary: |
@@ -614,9 +720,33 @@ tasks:
       start: Synchronizing project with upstream file changes and bootstrapping
       success: Successfully synchronized the project with upstream file changes and also bootstrapped the project
     cmds:
-      - task: upstream:project
+      - task: upstream:{{.PROJECT_TYPE}}
+
+  template:
+    deps:
+      - install:npm:liquidjs
+    summary: |
+      # Render a Template
+
+      This task is provided to serve as an alias for developing new templated files.
+    cmds:
+      - |
+        function handlebars() {
+          FILE="$1"
+          TMP="$(mktemp)"
+          .config/log info 'Generating `'"${FILE//.liquid}"'` from `'"$FILE"'`'
+          {{.NPX_HANDLE}}hbs --data .variables.json --helper ./.config/hbs.cjs "$FILE" --stdout > "$TMP"
+          mv "$TMP" "${FILE//.liquid}"
+          rm "$FILE"
+        }
+        handlebars '{{.CLI_ARGS}}'
+    preconditions:
+      - sh: test -f .variables.json
+        msg: This task requires that you have already spun up the project by running `task start`
+
   test:
     deps:
+      - install:software:jq
       - install:software:node
     interactive: true
     desc: Open an interactive dialog to select and run a Molecule test
@@ -634,6 +764,19 @@ tasks:
         else
           [[ $- == *i* ]] && task prepare || (.config/log error '{{.NONINTERACTIVE_MISSING_TEST_CMD}}' && exit 1)
         fi
+
   update:
+    desc: Update the repository
+    log:
+      error: Failed to update the repository
+      start: Updating the repository..
+      success: Finished updating the repository
     cmds:
-      - task: init
+      - task: :install:software:brew
+      - |
+        . "$HOME/.profile"
+        task update:prereqs
+        . "$HOME/.profile"
+        task update:init
+        task prepare
+        task update:finish
