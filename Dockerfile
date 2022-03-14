@@ -18,6 +18,7 @@ RUN adduser --uid 9000 --gecos "" --disabled-password app \
       "yamllint==1.*" \
   && VERSION="$(yamllint --version | sed 's/.*\s//')" \
   && jq --arg version "$VERSION" '.version = $version' > /engine.json < ./engine.json \
+  && rm ./engine.json \
   && apk del build-deps \
   && find /usr/lib/ -name '__pycache__' -print0 | xargs -0 -n1 rm -rf \
   && find /usr/lib/ -name '*.pyc' -print0 | xargs -0 -n1 rm -rf \
@@ -28,7 +29,7 @@ USER app
 VOLUME ["/code"]
 WORKDIR /code
 
-CMD ["codeclimate-yamllint", "/code"]
+CMD ["codeclimate-yamllint"]
 
 ARG BUILD_DATE
 ARG REVISION
@@ -56,8 +57,6 @@ USER root
 RUN rm /engine.json \
   && rm -rf * \
   && rm /usr/local/bin/codeclimate-yamllint
-
-USER app
 
 ENTRYPOINT ["yamllint"]
 CMD ["--version"]
