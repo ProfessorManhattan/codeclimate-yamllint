@@ -1,4 +1,4 @@
-FROM alpine:3 AS codeclimate-yamllint
+FROM alpine:3 AS codeclimate
 
 WORKDIR /work
 
@@ -48,7 +48,7 @@ LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
 LABEL space.megabyte.type="codeclimate"
 
-FROM codeclimate-yamllint AS yamllint
+FROM codeclimate AS yamllint
 
 WORKDIR /work
 
