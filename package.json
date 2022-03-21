@@ -78,6 +78,7 @@
       "codeclimate-yamllint": "15M",
       "yamllint": "15M"
     },
+    "dockerBaseTag": "yamllint",
     "dockerSlimCommand": {
       "codeclimate-yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate-yamllint.txt'",
       "yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/example:/work\" --workdir '/work' --preserve-path-file './local/paths.yamllint.txt'"
