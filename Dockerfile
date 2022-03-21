@@ -46,7 +46,7 @@ LABEL org.opencontainers.image.source="https://gitlab.com/megabyte-labs/dockerfi
 LABEL org.opencontainers.image.url="https://megabyte.space"
 LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
-LABEL space.megabyte.type="code-climate"
+LABEL space.megabyte.type="codeclimate"
 
 FROM codeclimate-yamllint AS yamllint
 
@@ -61,4 +61,4 @@ RUN rm /engine.json \
 ENTRYPOINT ["yamllint"]
 CMD ["--version"]
 
-LABEL space.megabyte.type="code-climate-standalone"
+LABEL space.megabyte.type="linter"

@@ -1,3 +1,6 @@
 #!/usr/bin/env sh
 #FIX - Passing config json does not seem to work.
-yamllint  -f parsable . | awk 'BEGIN {FS = ":" } ;{gsub(/^[ \t]+|[ \t]+$|"/, "",$4); match($4,/^\[(warning|error)\](.*)\((.*)\)$/,a); if(a[1]=="error") {sev="major"} else { sev="minor"}}; {printf("{\42location\42:{\42path\42:\42%s\42,\42lines\42:{\42begin\42:%s,\42end\42:%s}},\42severity\42:\42%s\42,\42check_name\42:\42%s\42,\42categories\42:[\42Style\42],\42type\42:\42issue\42,\42description\42:\42%s\42}\0",$1,$2,$3,sev,a[3],a[2]);}'
+if [ -f .config/yamllint.yml ]; then
+  CONFIG="-c .config/yamllint.yml"
+fi
+yamllint $CONFIG -f parsable . | awk 'BEGIN {FS = ":" } ;{gsub(/^[ \t]+|[ \t]+$|"/, "",$4); match($4,/^\[(warning|error)\](.*)\((.*)\)$/,a); if(a[1]=="error") {sev="major"} else { sev="minor"}}; {printf("{\42location\42:{\42path\42:\42%s\42,\42lines\42:{\42begin\42:%s,\42end\42:%s}},\42severity\42:\42%s\42,\42check_name\42:\42%s\42,\42categories\42:[\42Style\42],\42type\42:\42issue\42,\42description\42:\42%s\42}\0",$1,$2,$3,sev,a[3],a[2]);}'
