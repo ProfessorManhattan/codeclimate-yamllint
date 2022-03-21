@@ -73,7 +73,7 @@
     "codeClimateLanguages": [
       "YAML"
     ],
-    "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
+    "description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
     "dockerLatestSize": {
       "codeclimate": "15M",
       "yamllint": "15M"
