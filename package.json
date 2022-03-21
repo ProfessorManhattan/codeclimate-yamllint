@@ -80,8 +80,8 @@
     },
     "dockerBaseTag": "yamllint",
     "dockerSlimCommand": {
-      "codeclimate": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/output-example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate.txt'",
-      "yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$(echo '$PWD')/test/output-example:/work\" --workdir '/work' --preserve-path-file './local/paths.yamllint.txt'"
+      "codeclimate": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$PWD/test/output-example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate.txt'",
+      "yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$PWD/test/output-example:/work\" --workdir '/work' --preserve-path-file './local/paths.yamllint.txt'"
     },
     "dockerSlimSize": {
       "codeclimate": "3.8M",
