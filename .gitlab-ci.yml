@@ -27,7 +27,7 @@ integration:standalone:
     name: megabytelabs/yamllint:slim
     entrypoint: ['']
   script:
-    - yamllint -c .config/yamllint.yml . || true
+    - yamllint --version
 integration:codeclimate:
   image: megabytelabs/codeclimate:slim
   script:
