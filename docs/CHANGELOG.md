@@ -14,3 +14,16 @@ Grab this version by running:
 ```shell
 docker pull megabytelabs/yamllint:1.28.0
 ```
+
+# 1.0.0 (2022-10-02)
+
+
+
+
+
+Grab this version by running:
+
+
+```shell
+docker pull megabytelabs/yamllint:1.28.0
+```
