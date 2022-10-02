@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@megabytelabs/codeclimate-yamllint",
-  "version": "",
+  "version": "1.0.0",
   "description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
@@ -109,7 +109,7 @@
     "slug": "yamllint",
     "subgroup": "codeclimate",
     "title": "CodeClimate and Standalone Linter for YAMLLint",
-    "versionCommand": "docker run -it megabytelabs/yamllint:latest | sed 's/yamllint //'"
+    "versionCommand": "docker run -it megabytelabs/yamllint:latest | perl -pe 'if(($v)=/([0-9]+([.][0-9]+)+)/){print\"$v\n\";exit}$_=\"\"'"
   },
   "changelog": {
     "displayTypes": [
