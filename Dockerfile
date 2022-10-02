@@ -38,11 +38,11 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space>"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine"
-LABEL org.opencontainers.image.documentation="https://github.com/ProfessorManhattan/codeclimate-yamllint/blob/master/README.md"
+LABEL org.opencontainers.image.description="A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine"
+LABEL org.opencontainers.image.documentation="https://github.com/megabyte-labs/codeclimate-yamllint/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
-LABEL org.opencontainers.image.source="https://gitlab.com/megabyte-labs/dockerfile/codeclimate/yamllint.git"
+LABEL org.opencontainers.image.source="https://github.com/megabyte-labs/codeclimate-yamllint.git"
 LABEL org.opencontainers.image.url="https://megabyte.space"
 LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION

@@ -8,6 +8,7 @@ ansible_variables.json
 .AppleDB
 .AppleDesktop
 .AppleDouble
+artifacts/
 .autodoc/
 *.box
 build/
@@ -22,6 +23,8 @@ build/
 .classpath
 *.code-workspace
 .com.apple.timemachine.donotpresent
+common-shared/
+.config/dummy.go
 .config-old/
 connect.lock
 *.cover
@@ -34,6 +37,7 @@ db.sqlite3-journal
 .directory
 dist/
 .DocumentRevisions-V100
+.docusaurus/
 .DS_Store
 .env
 env/
@@ -47,6 +51,7 @@ htmlcov/
 .hypothesis/
 Icon
 .idea/
+.issues/
 .jest-cache/
 .junit/
 *.launch
@@ -62,8 +67,10 @@ node_modules.bak/
 nosetests.xml
 .nox/
 .npm/
+.npmrc
 npm-debug.log
 .nyc_output/
+persistence/
 pip-delete-this-directory.txt
 pip-log.txt
 .pnpm-store/
@@ -71,6 +78,7 @@ pip-log.txt
 __pycache__/
 .pytest_cache/
 pytestdebug.log
+.release.json
 *.retry
 .sass-cache/
 .settings/
@@ -79,7 +87,9 @@ pytestdebug.log
 snap.login
 .Spotlight-V100
 *.sublime-workspace
+*.tar
 .task/
+Taskfile.yml.model
 .TemporaryItems
 Temporary Items
 testem.log
@@ -95,6 +105,7 @@ typings/
 .variables.json
 .vault_pass
 .venv/
+.ventoy.json
 venv/
 venv.bak/
 .VolumeIcon.icns
@@ -104,3 +115,5 @@ venv.bak/
 !.vscode/settings.json
 !.vscode/tasks.json
 yarn-error.log
+.yubi.json
+.yubi-masterkey

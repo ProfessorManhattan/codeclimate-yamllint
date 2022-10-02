@@ -1,5 +1,5 @@
 {
-  "description": "A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine",
+  "description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
   "languages": ["YAML"],
   "maintainer": {
     "email": "help@megabyte.space",
@@ -7,5 +7,5 @@
   },
   "name": "yamllint",
   "spec_version": "0.3.1",
-  "version": "0.0.1"
+  "version": "1.26.3"
 }

@@ -1,26 +1,29 @@
 <!-- ⚠️ This README has been generated from the file(s) ".config/docs/blueprint-readme-codeclimate.md" ⚠️--><div align="center">
   <center>
-    <a href="https://github.com/ProfessorManhattan/codeclimate-yamllint">
+    <a href="https://github.com/megabyte-labs/codeclimate-yamllint">
       <img width="148" height="148" alt="YAMLLint logo" src="https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint/-/raw/master/logo.png" />
     </a>
   </center>
 </div>
 <div align="center">
-  <center><h1 align="center"><i></i>CodeClimate and Standalone Engines for YAMLLint<i></i></h1></center>
-  <center><h4 style="color: #18c3d1;">A slim Docker image and CodeClimate engine maintained by <a href="https://megabyte.space" target="_blank">Megabyte Labs</a></h4><i></i></center>
+  <center><h1 align="center"><i></i>CodeClimate and Standalone Linter for YAMLLint<i></i></h1></center>
+  <center><h4 style="color: #18c3d1;">A performance-optimized CodeClimate engine maintained by <a href="https://megabyte.space" target="_blank">Megabyte Labs</a></h4><i></i></center>
 </div>
 
 <div align="center">
   <a href="https://megabyte.space" title="Megabyte Labs homepage" target="_blank">
     <img alt="Homepage" src="https://img.shields.io/website?down_color=%23FF4136&down_message=Down&label=Homepage&logo=home-assistant&logoColor=white&up_color=%232ECC40&up_message=Up&url=https%3A%2F%2Fmegabyte.space&style=for-the-badge" />
   </a>
-  <a href="https://github.com/ProfessorManhattan/codeclimate-yamllint/blob/master/docs/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
+  <a href="https://github.com/megabyte-labs/codeclimate-yamllint/blob/master/docs/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
     <img alt="Contributing" src="https://img.shields.io/badge/Contributing-Guide-0074D9?logo=github-sponsors&logoColor=white&style=for-the-badge" />
   </a>
   <a href="https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/" title="Chat with us on Slack" target="_blank">
     <img alt="Slack" src="https://img.shields.io/badge/Slack-Chat-e01e5a?logo=slack&logoColor=white&style=for-the-badge" />
   </a>
-  <a href="https://github.com/ProfessorManhattan/codeclimate-yamllint" title="GitHub mirror" target="_blank">
+  <a href="https://gitter.im/megabyte-labs/community" title="Chat with the community on Gitter" target="_blank">
+    <img alt="Gitter" src="https://img.shields.io/gitter/room/megabyte-labs/community?logo=gitter&logoColor=white&style=for-the-badge" />
+  </a>
+  <a href="https://github.com/megabyte-labs/codeclimate-yamllint" title="GitHub mirror" target="_blank">
     <img alt="GitHub" src="https://img.shields.io/badge/Mirror-GitHub-333333?logo=github&style=for-the-badge" />
   </a>
   <a href="https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint" title="GitLab repository" target="_blank">
@@ -29,8 +32,8 @@
 </div>
 <br/>
 <div align="center">
-  <a title="Version: pkg.version" href="https://github.com/ProfessorManhattan/codeclimate-yamllint" target="_blank">
-    <img alt="Version: pkg.version" src="https://img.shields.io/badge/version-pkg.version-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
+  <a title="Version: 1.26.3" href="https://github.com/megabyte-labs/codeclimate-yamllint" target="_blank">
+    <img alt="Version: 1.26.3" src="https://img.shields.io/badge/version-1.26.3-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
   </a>
   <a title="GitLab build status" href="https://gitlab.com/megabyte-labs/docker/codeclimate/yamllint/-/commits/master" target="_blank">
     <img alt="Build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/docker/codeclimate/yamllint?branch=master&label=build&logo=gitlab&logoColor=white&style=flat-square">
@@ -47,12 +50,12 @@
   <a title="Documentation" href="https://megabyte.space/docs/docker" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?logo=readthedocs&logoColor=white&style=flat-square" />
   </a>
-  <a title="License: MIT" href="https://github.com/ProfessorManhattan/codeclimate-yamllint/blob/master/LICENSE" target="_blank">
+  <a title="License: MIT" href="https://github.com/megabyte-labs/codeclimate-yamllint/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHpJREFUCNdjYOD/wMDAUP+PgYHxhzwDA/MB5gMM7AwMDxj4GBgKGGQYGCyAEEgbMDDwAAWAwmk8958xpIOI5zKH2RmOyhxmZjguAiKmgIgtQOIYmFgCIp4AlaQ9OczGkJYCJEAGgI0CGwo2HmwR2Eqw5SBnNIAdBHYaAJb6KLM15W/CAAAAAElFTkSuQmCC&style=flat-square" />
   </a>
 </div>
 
-> </br><h4 align="center">**A slim YAMLLint container that can run in standalone-mode or as a GitLab CI-ready CodeClimate engine**</h4></br>
+> </br><h4 align="center">**A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine**</h4></br>
 
 <a href="#table-of-contents" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 
@@ -77,6 +80,7 @@
   - [Build Tools](#build-tools)
 - [Philosophy](#philosophy)
 - [Contributing](#contributing)
+  - [Affiliates](#affiliates)
 - [License](#license)
 
 <a href="#overview" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
@@ -138,7 +142,7 @@ You can also add a bash alias to your `~/.bashrc` file so that you can run the Y
 
 ```shell
 yamllint() {
-    docker run -it -v ${PWD}:/work -w /work --rm megabytelabs/yamllint:latest "$@"
+  docker run -it -v ${PWD}:/work -w /work --rm megabytelabs/yamllint:latest "$@"
 }
 ```
 
@@ -183,7 +187,7 @@ Or if you want to see an HTML report:
 
 ```shell
 brew install codeclimate/formulae/codeclimate
-codeclimate analyze --dev  -f html > codeclimate-report.html
+codeclimate analyze --dev -f html > codeclimate-report.html
 ```
 
 #### Standalone Integration
@@ -272,7 +276,7 @@ At first glance, you might notice that there are many files in this repository. 
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/ProfessorManhattan/codeclimate-yamllint/issues). If you would like to contribute, please take a look at the [contributing guide](https://github.com/ProfessorManhattan/codeclimate-yamllint/blob/master/docs/CONTRIBUTING.md).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/megabyte-labs/codeclimate-yamllint/issues). If you would like to contribute, please take a look at the [contributing guide](https://github.com/megabyte-labs/codeclimate-yamllint/blob/master/docs/CONTRIBUTING.md).
 
 <details>
 <summary><b>Sponsorship</b></summary>
@@ -295,6 +299,17 @@ I create open source projects out of love. Although I have a job, shelter, and a
 </a>
 <a href="https://www.patreon.com/ProfessorManhattan" title="Support us on Patreon" target="_blank">
   <img alt="Patreon" src="https://img.shields.io/badge/Patreon-Support-052d49?logo=patreon&logoColor=white&style=for-the-badge" />
+</a>
+
+### Affiliates
+
+Below you will find a list of services we leverage that offer special incentives for signing up for their services through our special links:
+
+<a href="http://eepurl.com/h3aEdX" title="Sign up for $30 in MailChimp credits" target="_blank">
+  <img alt="MailChimp" src="https://cdn-images.mailchimp.com/monkey_rewards/grow-business-banner-2.png" />
+</a>
+<a href="https://www.digitalocean.com/?refcode=751743d45e36&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
+  <img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge" />
 </a>
 
 </details>
