@@ -55,7 +55,6 @@ WORKDIR /work
 USER root
 
 RUN rm /engine.json \
-  && rm -rf * \
   && rm /usr/local/bin/codeclimate-yamllint
 
 ENTRYPOINT ["yamllint"]
