@@ -1,3 +1,4 @@
+---
 schemaVersion: 2.0.0
 
 commandTests:
@@ -12,7 +13,6 @@ metadataTest:
       value: Megabyte Labs <help@megabyte.space>
     - key: space.megabyte.type
       value: linter
-  volumes: [/work]
   entrypoint: [yamllint]
   workdir: /work
   user: root

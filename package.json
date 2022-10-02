@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@megabytelabs/codeclimate-yamllint",
-  "version": "1.26.3",
+  "version": "1.28.0",
   "description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
@@ -85,16 +85,16 @@
     "description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
     "dockerBaseTag": "yamllint",
     "dockerLatestSize": {
-      "codeclimate": "15M",
-      "yamllint": "15M"
+      "codeclimate": "17M",
+      "yamllint": "17M"
     },
     "dockerSlimCommand": {
       "codeclimate": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$PWD/test/output-example:/work\" --workdir '/work' --preserve-path-file './local/paths.codeclimate.txt'",
       "yamllint": "--http-probe=false --exec 'yamllint . && yamllint --version' --mount \"$PWD/test/output-example:/work\" --workdir '/work' --preserve-path-file './local/paths.yamllint.txt'"
     },
     "dockerSlimSize": {
-      "codeclimate": "3.8M",
-      "yamllint": "3.3M"
+      "codeclimate": "4.3M",
+      "yamllint": "3.9M"
     },
     "github_id": "R_kgDOG_Sl6w",
     "gitlab_group_id": "14556970",

@@ -10,7 +10,7 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN adduser --uid 9000 --gecos "" --disabled-password app \
   && apk --no-cache add --virtual build-deps \
       jq~=1 \
-      py3-pip~=20 \
+      py3-pip~=22 \
   && apk --no-cache add \
       gawk~=5 \
       python3~=3 \

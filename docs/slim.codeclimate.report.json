@@ -9,7 +9,7 @@
   },
   "type": "build",
   "state": "done",
-  "target_reference": "megabytelabs/yamllint:latest",
+  "target_reference": "megabytelabs/yamllint:latest-codeclimate",
   "system": {
     "type": "Linux",
     "release": "5.10.104-linuxkit",
@@ -21,16 +21,16 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:241d1c74d2b3cc4c0b3a6c3802192da4f7d762becaa27cb31f0b1dc09ea8c39c",
-      "tags": ["latest"],
-      "names": ["megabytelabs/yamllint:latest"]
+      "id": "sha256:85d0bde3b93bfc97dc12df5480d9ef6777a893d6ea84a87c3d27f517362e1590",
+      "tags": ["latest", "latest-codeclimate"],
+      "names": ["codeclimate/codeclimate-yamllint:latest", "megabytelabs/yamllint:latest-codeclimate"]
     },
     "size": 37190473,
     "size_human": "37 MB",
-    "create_time": "2022-10-02T02:10:39Z",
+    "create_time": "2022-10-02T02:09:35Z",
     "docker_version": "",
     "architecture": "amd64",
-    "user": "root",
+    "user": "app",
     "os": "linux",
     "volumes": ["/code"],
     "labels": {
@@ -44,32 +44,32 @@
       "org.opencontainers.image.source": "https://github.com/megabyte-labs/codeclimate-yamllint.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
-      "org.opencontainers.image.version": "1.28.0",
-      "space.megabyte.type": "linter"
+      "org.opencontainers.image.version": "1.26.3",
+      "space.megabyte.type": "codeclimate"
     },
     "env_vars": ["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
     "container_entry": {
       "exe_path": ""
     }
   },
-  "minified_image_size": 10092522,
-  "minified_image_size_human": "10 MB",
-  "minified_image": "megabytelabs/yamllint:slim",
+  "minified_image_size": 11049848,
+  "minified_image_size_human": "11 MB",
+  "minified_image": "megabytelabs/yamllint:slim-codeclimate",
   "minified_image_has_data": true,
-  "minified_by": 3.684953374389474,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/241d1c74d2b3cc4c0b3a6c3802192da4f7d762becaa27cb31f0b1dc09ea8c39c/artifacts",
+  "minified_by": 3.3656999625696207,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/85d0bde3b93bfc97dc12df5480d9ef6777a893d6ea84a87c3d27f517362e1590/artifacts",
   "container_report_name": "creport.json",
-  "seccomp_profile_name": "megabytelabs-yamllint-seccomp.json",
-  "apparmor_profile_name": "megabytelabs-yamllint-apparmor-profile",
+  "seccomp_profile_name": "codeclimate-codeclimate-yamllint-seccomp.json",
+  "apparmor_profile_name": "codeclimate-codeclimate-yamllint-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:241d1c74d2b3cc4c0b3a6c3802192da4f7d762becaa27cb31f0b1dc09ea8c39c",
-      "full_name": "megabytelabs/yamllint:latest",
-      "repo_name": "megabytelabs/yamllint",
+      "id": "sha256:85d0bde3b93bfc97dc12df5480d9ef6777a893d6ea84a87c3d27f517362e1590",
+      "full_name": "codeclimate/codeclimate-yamllint:latest",
+      "repo_name": "codeclimate/codeclimate-yamllint",
       "version_tag": "latest",
-      "raw_tags": ["megabytelabs/yamllint:latest"],
-      "create_time": "2022-10-02T02:10:39Z",
+      "raw_tags": ["codeclimate/codeclimate-yamllint:latest", "megabytelabs/yamllint:latest-codeclimate"],
+      "create_time": "2022-10-02T02:09:35Z",
       "new_size": 37190473,
       "new_size_human": "37 MB",
       "instructions": [
@@ -433,105 +433,24 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.versi...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.28.0\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.28.0\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.26.3\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.26.3\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
           "time": "2022-10-02T02:09:35Z",
-          "is_nop": false,
-          "is_exec_form": true,
-          "local_image_exists": false,
-          "layer_index": 0,
-          "size": 0,
-          "command_snippet": "RUN [\"LABEL\",\"space.megabyte.type=codeclimat...",
-          "command_all": "RUN [\"LABEL\",\"space.megabyte.type=codeclimate\"]",
-          "system_commands": ["[\"LABEL\",\"space.megabyte.type=codeclimate\"]"],
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "type": "RUN",
-          "time": "2022-10-02T02:10:24Z",
-          "is_nop": false,
-          "is_exec_form": true,
-          "local_image_exists": false,
-          "layer_index": 0,
-          "size": 0,
-          "command_snippet": "RUN [\"WORKDIR\",\"/work\"]",
-          "command_all": "RUN [\"WORKDIR\",\"/work\"]",
-          "system_commands": ["[\"WORKDIR\",\"/work\"]"],
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "type": "RUN",
-          "time": "2022-10-02T02:10:24Z",
-          "is_nop": false,
-          "is_exec_form": true,
-          "local_image_exists": false,
-          "layer_index": 0,
-          "size": 0,
-          "command_snippet": "RUN [\"USER\",\"root\"]",
-          "command_all": "RUN [\"USER\",\"root\"]",
-          "system_commands": ["[\"USER\",\"root\"]"],
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "type": "RUN",
-          "time": "2022-10-02T02:10:39Z",
-          "is_nop": false,
-          "is_exec_form": true,
-          "local_image_exists": false,
-          "layer_index": 0,
-          "size": 0,
-          "command_snippet": "RUN [\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",...",
-          "command_all": "RUN [\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",\"rm\",\"/engine.json\",\"&&\",\"rm\",\"/usr/local/bin/codeclimate-yamllint\"]",
-          "system_commands": [
-            "[\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",\"rm\",\"/engine.json\",\"",
-            "\",\"rm\",\"/usr/local/bin/codeclimate-yamllint\"]"
-          ],
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "type": "RUN",
-          "time": "2022-10-02T02:10:39Z",
-          "is_nop": false,
-          "is_exec_form": true,
-          "local_image_exists": false,
-          "layer_index": 0,
-          "size": 0,
-          "command_snippet": "RUN [\"ENTRYPOINT\",\"[yamllint]\"]",
-          "command_all": "RUN [\"ENTRYPOINT\",\"[yamllint]\"]",
-          "system_commands": ["[\"ENTRYPOINT\",\"[yamllint]\"]"],
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "type": "RUN",
-          "time": "2022-10-02T02:10:39Z",
-          "is_nop": false,
-          "is_exec_form": true,
-          "local_image_exists": false,
-          "layer_index": 0,
-          "size": 0,
-          "command_snippet": "RUN [\"CMD\",\"[--version]\"]",
-          "command_all": "RUN [\"CMD\",\"[--version]\"]",
-          "system_commands": ["[\"CMD\",\"[--version]\"]"],
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "type": "RUN",
-          "time": "2022-10-02T02:10:39Z",
           "is_last_instruction": true,
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": true,
           "layer_index": 0,
           "size": 0,
-          "command_snippet": "RUN [\"LABEL\",\"space.megabyte.type=linter\"]",
-          "command_all": "RUN [\"LABEL\",\"space.megabyte.type=linter\"]",
-          "system_commands": ["[\"LABEL\",\"space.megabyte.type=linter\"]"],
+          "command_snippet": "RUN [\"LABEL\",\"space.megabyte.type=codeclimat...",
+          "command_all": "RUN [\"LABEL\",\"space.megabyte.type=codeclimate\"]",
+          "system_commands": ["[\"LABEL\",\"space.megabyte.type=codeclimate\"]"],
           "comment": "buildkit.dockerfile.v0",
-          "raw_tags": ["megabytelabs/yamllint:latest"]
+          "raw_tags": ["codeclimate/codeclimate-yamllint:latest", "megabytelabs/yamllint:latest-codeclimate"]
         }
       ]
     }
