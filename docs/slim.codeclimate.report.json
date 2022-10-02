@@ -21,7 +21,7 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:cce0127967d9ea1543c20136936f4d9b3bd3787de66b986fadc94eae2a433825",
+      "id": "sha256:b4b8e3a8075d09316f84bd477f285b234829584082ff498c4f71e15242aeea15",
       "tags": ["latest", "latest-codeclimate"],
       "names": ["codeclimate/codeclimate-yamllint:latest", "megabytelabs/yamllint:latest-codeclimate"]
     },
@@ -36,15 +36,15 @@
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space>",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2022-10-02T00:42:24-04:00",
+      "org.opencontainers.image.created": "2022-10-02T00:45:37-04:00",
       "org.opencontainers.image.description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
       "org.opencontainers.image.documentation": "https://github.com/megabyte-labs/codeclimate-yamllint/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "2079249577f45714a91f267e359703b7cebe769a",
+      "org.opencontainers.image.revision": "140115225099259c26ed47736fc4faf1bab646d4",
       "org.opencontainers.image.source": "https://github.com/megabyte-labs/codeclimate-yamllint.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
-      "org.opencontainers.image.version": "1.0.0",
+      "org.opencontainers.image.version": "1.0.1",
       "space.megabyte.type": "codeclimate"
     },
     "env_vars": ["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
@@ -57,14 +57,14 @@
   "minified_image": "megabytelabs/yamllint:slim-codeclimate",
   "minified_image_has_data": true,
   "minified_by": 3.3656967951052357,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/cce0127967d9ea1543c20136936f4d9b3bd3787de66b986fadc94eae2a433825/artifacts",
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/b4b8e3a8075d09316f84bd477f285b234829584082ff498c4f71e15242aeea15/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "codeclimate-codeclimate-yamllint-seccomp.json",
   "apparmor_profile_name": "codeclimate-codeclimate-yamllint-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:cce0127967d9ea1543c20136936f4d9b3bd3787de66b986fadc94eae2a433825",
+      "id": "sha256:b4b8e3a8075d09316f84bd477f285b234829584082ff498c4f71e15242aeea15",
       "full_name": "codeclimate/codeclimate-yamllint:latest",
       "repo_name": "codeclimate/codeclimate-yamllint",
       "version_tag": "latest",
@@ -321,8 +321,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:42:24-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:42:24-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:45:37-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:45:37-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
@@ -377,9 +377,9 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=2079249577f45714a91f267e359703b7cebe769a\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=140115225099259c26ed47736fc4faf1bab646d4\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=2079249577f45714a91f267e359703b7cebe769a\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=140115225099259c26ed47736fc4faf1bab646d4\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
@@ -433,8 +433,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.versi...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.0.0\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.0.0\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.0.1\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.0.1\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {

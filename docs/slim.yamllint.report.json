@@ -21,13 +21,13 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:ae1106d1d692cf85f234647c8fbc52c5e7b76c52fabe7ff24c982fc8b2e00fb1",
+      "id": "sha256:ad896ea4d033a17095f15d67a842c1861c6937b382eb410ef30936574a0bdb90",
       "tags": ["latest"],
       "names": ["megabytelabs/yamllint:latest"]
     },
     "size": 37190438,
     "size_human": "37 MB",
-    "create_time": "2022-10-02T04:43:07Z",
+    "create_time": "2022-10-02T04:47:33Z",
     "docker_version": "",
     "architecture": "amd64",
     "user": "root",
@@ -36,15 +36,15 @@
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space>",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2022-10-02T00:42:24-04:00",
+      "org.opencontainers.image.created": "2022-10-02T00:45:37-04:00",
       "org.opencontainers.image.description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
       "org.opencontainers.image.documentation": "https://github.com/megabyte-labs/codeclimate-yamllint/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "2079249577f45714a91f267e359703b7cebe769a",
+      "org.opencontainers.image.revision": "140115225099259c26ed47736fc4faf1bab646d4",
       "org.opencontainers.image.source": "https://github.com/megabyte-labs/codeclimate-yamllint.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
-      "org.opencontainers.image.version": "1.28.0",
+      "org.opencontainers.image.version": "1.0.1",
       "space.megabyte.type": "linter"
     },
     "env_vars": ["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"],
@@ -57,19 +57,19 @@
   "minified_image": "megabytelabs/yamllint:slim",
   "minified_image_has_data": true,
   "minified_by": 3.684949906475309,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/ae1106d1d692cf85f234647c8fbc52c5e7b76c52fabe7ff24c982fc8b2e00fb1/artifacts",
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/ad896ea4d033a17095f15d67a842c1861c6937b382eb410ef30936574a0bdb90/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "megabytelabs-yamllint-seccomp.json",
   "apparmor_profile_name": "megabytelabs-yamllint-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:ae1106d1d692cf85f234647c8fbc52c5e7b76c52fabe7ff24c982fc8b2e00fb1",
+      "id": "sha256:ad896ea4d033a17095f15d67a842c1861c6937b382eb410ef30936574a0bdb90",
       "full_name": "megabytelabs/yamllint:latest",
       "repo_name": "megabytelabs/yamllint",
       "version_tag": "latest",
       "raw_tags": ["megabytelabs/yamllint:latest"],
-      "create_time": "2022-10-02T04:43:07Z",
+      "create_time": "2022-10-02T04:47:33Z",
       "new_size": 37190438,
       "new_size_human": "37 MB",
       "instructions": [
@@ -321,8 +321,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:42:24-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:42:24-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:45:37-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2022-10-02T00:45:37-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
@@ -377,9 +377,9 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=2079249577f45714a91f267e359703b7cebe769a\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=140115225099259c26ed47736fc4faf1bab646d4\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=2079249577f45714a91f267e359703b7cebe769a\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=140115225099259c26ed47736fc4faf1bab646d4\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
@@ -433,8 +433,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.versi...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.28.0\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.28.0\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=1.0.1\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=1.0.1\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
@@ -478,7 +478,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-02T04:43:07Z",
+          "time": "2022-10-02T04:47:33Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -494,7 +494,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-02T04:43:07Z",
+          "time": "2022-10-02T04:47:33Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -507,7 +507,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-02T04:43:07Z",
+          "time": "2022-10-02T04:47:33Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -520,7 +520,7 @@
         },
         {
           "type": "RUN",
-          "time": "2022-10-02T04:43:07Z",
+          "time": "2022-10-02T04:47:33Z",
           "is_last_instruction": true,
           "is_nop": false,
           "is_exec_form": true,

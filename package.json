@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@megabytelabs/codeclimate-yamllint",
-  "version": "1.28.0",
+  "version": "1.0.1",
   "description": "A slim YAMLLint container that can also serve as a GitLab CI-ready CodeClimate engine",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
