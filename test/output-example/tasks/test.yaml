@@ -9,6 +9,7 @@ cloud:
   description: Controller + N Compute Topology - x86 KVM
   # Cloud Administrator (admin) User's Password
   password: MyCloudPassword
+  password: Hey
   # Cloud Database Service Type: db2 or mysql
   database_service_type: db2
   # Cloud Messaging Service Type: rabbitmq or qpid
